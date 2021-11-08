@@ -1,5 +1,13 @@
 name: learn-github-actions
-on: [push]
+on: 
+ push:
+ workflow_call:
+   inputs:
+     greet-name:
+      description: 'Who to greet'
+      default: 'world'
+      required: false
+      type: string
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest

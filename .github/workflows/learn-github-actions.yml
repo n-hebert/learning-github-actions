@@ -18,4 +18,5 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
+      - run: env | grep -i github
       - run: echo "hello ${{ inputs.greet-name }}"

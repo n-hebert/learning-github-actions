@@ -3,14 +3,18 @@ on:
  push:
  workflow_call:
    inputs:
-     greet-name:
-      description: 'Who to greet'
-      default: 'world'
-      required: false
-      type: string
+     greet-name-matrix:
+       description: "The matrix of who to greet"
+       default: '[ alice, bob, charlie ]'
+       required: false
+       type: string
+
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        greet-name: ${{ inputs.greet-name-matrix }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -18,4 +22,4 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
-      - run: echo "hello ${{ inputs.greet-name }}"
+      - run: echo "hello ${{ matrix.greet-name }}"

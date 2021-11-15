@@ -1,0 +1,25 @@
+name: reusable-workflow
+on: 
+ workflow_call:
+   inputs:
+     greet-name-matrix:
+       description: "The matrix of who to greet"
+       default: '[ alice, bob, charlie ]'
+       required: false
+       type: string
+
+jobs:
+  greet-user:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        greet-name: ${{ fromJson(inputs.greet-name-matrix) }}
+    steps:
+      - run: echo ${{ secrets.TEST }}
+      - run: |
+          if [[ ${name} == "alice" ]]; then
+            secret_txt=${{ secrets.ALICE }}
+          elif [[ ${name} == "bob" ]]; then
+            secret_txt=${{ secrets.BOB }}
+          fi
+      - run: echo "hello ${{ matrix.greet-name }}${secret_txt}"

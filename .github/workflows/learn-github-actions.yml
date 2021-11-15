@@ -1,13 +1,6 @@
 name: learn-github-actions
 on: 
  push:
- workflow_call:
-   inputs:
-     greet-name-matrix:
-       description: "The matrix of who to greet"
-       default: '[ alice, bob, charlie ]'
-       required: false
-       type: string
 
 jobs:
   check-bats-version:
@@ -19,17 +12,3 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
-  greet-user:
-    if: github.event_name == 'workflow_call'
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        greet-name: ${{ fromJson(inputs.greet-name-matrix) }}
-    steps:
-      - run: |
-          if [[ ${name} == "alice" ]]; then
-            secret=${{ secrets.ALICE }}
-          elif [[ ${name} == "bob" ]]; then
-            secret=${{ secrets.BOB }}
-          fi
-      - run: echo "hello ${{ matrix.greet-name }}${secret}"

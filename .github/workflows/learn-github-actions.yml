@@ -12,9 +12,6 @@ on:
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        greet-name: ${{ fromJson(inputs.greet-name-matrix) }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -22,4 +19,16 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
-      - run: echo "hello ${{ matrix.greet-name }}"
+  greet-user:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        greet-name: ${{ fromJson(inputs.greet-name-matrix) }}
+    steps:
+      - run: |
+          if [[ ${name} == "alice" ]]; then
+            secret=${{ secrets.alice }}
+          elif [[ ${name} == "bob" ]]; then
+            secret=${{ secrets.bob }}
+          fi
+      - run: echo "hello ${{ matrix.greet-name }}${secret}"

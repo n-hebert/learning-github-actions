@@ -1,12 +1,15 @@
 name: reusable-workflow
 on: 
- workflow_call:
-   inputs:
-     greet-name-matrix:
-       description: "The matrix of who to greet"
-       default: '[ alice, bob, charlie ]'
-       required: false
-       type: string
+  workflow_call:
+    inputs:
+      greet-name-matrix:
+        description: "The matrix of who to greet"
+        default: '[ alice, bob, charlie ]'
+        required: false
+        type: string
+    secrets:
+      ALICE:
+      BOB:
 
 jobs:
   greet-user:

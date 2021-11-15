@@ -25,7 +25,6 @@ jobs:
           if [[ "${{ matrix.greet-name }}" == "alice" ]]; then
             echo "secret_txt= hard-coded text ${{ secrets.ALICE }}" >> $GITHUB_ENV
           elif [[ "${{ matrix.greet-name }}" == "bob" ]]; then
-            secret_txt=${{ secrets.BOB }}
             echo "secret_txt= ${{ secrets.BOB }}" >> $GITHUB_ENV
           fi
       - run: echo "hello ${{ matrix.greet-name }}${secret_txt}"

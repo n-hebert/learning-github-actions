@@ -9,7 +9,9 @@ on:
         type: string
     secrets:
       ALICE:
+        required: true
       BOB:
+        required: true
 
 jobs:
   greet-user:

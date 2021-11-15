@@ -17,9 +17,9 @@ jobs:
     steps:
       - run: echo ${{ secrets.TEST }}
       - run: |
-          if [[ ${{ matrix.greet-name }} == "alice" ]]; then
-            secret_txt=${{ secrets.ALICE }}
-          elif [[ ${{ matrix.greet-name }} == "bob" ]]; then
+          if [[ "${{ matrix.greet-name }}" == "alice" ]]; then
+            secret_txt="working, but not fetching secrets${{ secrets.ALICE }}"
+          elif [[ "${{ matrix.greet-name }}" == "bob" ]]; then
             secret_txt=${{ secrets.BOB }}
           fi
       - run: echo "hello ${{ matrix.greet-name }}${secret_txt}"

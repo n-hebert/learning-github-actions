@@ -12,3 +12,12 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
+
+  test-matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        entry: [ test ]
+    steps:
+      - echo ${{ matrix.entry }}
+      

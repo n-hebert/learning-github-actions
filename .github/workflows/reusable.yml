@@ -14,6 +14,13 @@ on:
         required: true
 
 jobs:
+  check-token:
+    runs-on: ubuntu-latest
+    steps:
+       - run: echo Token => ${{ secrets.GITHUB_TOKEN }}
+       - run: 'echo Token => ${{ secrets.GITHUB_TOKEN }}'
+       - run: "echo Token => ${{ secrets.GITHUB_TOKEN }}"
+
   greet-user:
     runs-on: ubuntu-latest
     strategy:

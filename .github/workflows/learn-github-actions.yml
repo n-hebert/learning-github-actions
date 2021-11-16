@@ -19,5 +19,5 @@ jobs:
       matrix:
         entry: [ test ]
     steps:
-      - echo ${{ matrix.entry }}
+      - run: echo ${{ matrix.entry }}
       

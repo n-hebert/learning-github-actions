@@ -1,0 +1,17 @@
+name: tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "The branch to tag"
+        required: true
+      tag:
+        description: "The tag name to give. Should begin with 'v' and have a semver."
+        required: true
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - run: git tag ${{ github.event.inputs.tag }} ${{ github.event.inputs.branch }}

@@ -19,5 +19,9 @@ jobs:
       matrix:
         entry: [ test ]
     steps:
-      - run: echo ${{ matrix.entry }}
-      
+      - run: echo ${{ matrix.entry }}     
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"

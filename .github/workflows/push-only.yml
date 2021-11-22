@@ -1,0 +1,23 @@
+name: Push Only
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Your name"
+        required: false
+        default: "world"
+
+jobs:
+ greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "Hello, ${{ github.events.inputs.name }}!"
+
+  farewell:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' # Only run on pushes to main - this will never run.
+    steps:
+      - name: Say hello
+        run: echo "Fare well, ${{ github.events.inputs.name }}!"

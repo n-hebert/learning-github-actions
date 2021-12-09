@@ -13,6 +13,14 @@ jobs:
       - run: npm install -g bats
       - run: bats -v
 
+  echo-commit-message-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set commit title
+        run: echo COMMIT_MESSAGE=\'$(git log -n 1 --pretty=format:%s | sed "s@'@'\\\''@g;")\' >> $GITHUB_ENV
+      - name: Echo commit title
+        run: echo ${COMMIT_MESSAGE}
+
   test-matrix:
     runs-on: ubuntu-latest
     strategy:

@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set commit title
-        run: echo COMMIT_MESSAGE=\'$(git log -n 1 --pretty=format:%s)\' >> $GITHUB_ENV
+        run: echo COMMIT_MESSAGE=$(git log -n 1 --pretty=format:%s) >> $GITHUB_ENV
       - name: Print GitHub Env
         run: cat $GITHUB_ENV
       - name: Echo commit title

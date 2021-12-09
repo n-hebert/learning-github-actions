@@ -16,6 +16,8 @@ jobs:
   echo-commit-message-title:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Set commit title
         run: echo COMMIT_MESSAGE=\'$(git log -n 1 --pretty=format:%s | sed "s@'@'\\\''@g;")\' >> $GITHUB_ENV
       - name: Echo commit title

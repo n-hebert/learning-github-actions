@@ -37,3 +37,17 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$GITHUB_CONTEXT"
+
+  test-cache:
+    runs-on: ubuntu-latest
+    steps:
+     - name: bundle cache
+       uses: actions/cache@v2
+       id: bundle-cache
+       with:
+          path: |
+            vendor/cache
+            vendor/bundle
+          key: ${{ runner.os }}-bundle-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bundle-

@@ -3,16 +3,6 @@ on:
  push:
 
 jobs:
-  check-bats-version:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
-
   echo-commit-message-title:
     runs-on: ubuntu-latest
     steps:
@@ -24,6 +14,23 @@ jobs:
         run: cat $GITHUB_ENV
       - name: Echo commit title
         run: echo ${COMMIT_MESSAGE}
+
+  generate-file:
+    runs-on: ubuntu-latest
+    container:
+      image: ruby:2.6.6
+    steps:
+      - name: "Print to file"
+        run: echo hi > file.txt
+
+  read-file:
+    needs: generate-file
+    runs-on: ubuntu-latest
+    container:
+      image: ruby:2.6.6
+    steps:
+      - name: "Print file"
+        run: cat file.txt
 
   test-matrix:
     runs-on: ubuntu-latest

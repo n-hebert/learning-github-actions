@@ -1,0 +1,15 @@
+name: CD test
+on: 
+ push:
+
+# How does cd behave?
+jobs:
+  change-dirs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: mkdir mydir
+      - run: pwd
+      - run: cd mydir
+      - run: pwd
+      - run: cd ..
+      - run: pwd

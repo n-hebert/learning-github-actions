@@ -22,6 +22,11 @@ jobs:
     steps:
       - name: "Print to file"
         run: echo hi > file.txt
+      - name: Upload output file
+        uses: actions/upload-artifact@v2
+        with:
+          name: hello-file
+          path: file.txt
 
   read-file:
     needs: generate-file
@@ -29,6 +34,10 @@ jobs:
     container:
       image: ruby:2.6.6
     steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: hello-file
       - name: "Print file"
         run: cat file.txt
 

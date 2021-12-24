@@ -41,8 +41,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: hello-file
-      - name: "Print file"
-        run: cat ./sub/dir/file.txt
+      - name: "Find file & print"
+        run: find . -name file.txt -exec cat {} \;
 
   test-matrix:
     runs-on: ubuntu-latest

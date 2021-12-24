@@ -22,3 +22,6 @@ jobs:
 #
       - name: Check for AWS CLI
         run: aws cloudformation help
+
+      - name: Check for bundler
+        run: bundler config

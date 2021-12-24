@@ -21,6 +21,7 @@ jobs:
       image: ruby:2.6.6
     steps:
       - name: "Print to file"
+        working-directory: "./sub/dir/"
         run: echo hi > file.txt
       - name: Upload output file
         uses: actions/upload-artifact@v2
@@ -39,7 +40,7 @@ jobs:
         with:
           name: hello-file
       - name: "Print file"
-        run: cat file.txt
+        run: cat ./sub/dir/file.txt
 
   test-matrix:
     runs-on: ubuntu-latest

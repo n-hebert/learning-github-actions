@@ -42,7 +42,7 @@ jobs:
         with:
           name: hello-file
       - name: "Find file & print"
-        run: find . -name file.txt -exec cat {} \;
+        run: find . -name file.txt -ls -exec cat {} \;
 
   test-matrix:
     runs-on: ubuntu-latest

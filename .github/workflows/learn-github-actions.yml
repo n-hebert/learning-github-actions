@@ -20,6 +20,8 @@ jobs:
     container:
       image: ruby:2.6.6
     steps:
+      - name: "Make subdir"
+        run: mkdir -p "./sub/dir"
       - name: "Print to file"
         working-directory: "./sub/dir/"
         run: echo hi > file.txt

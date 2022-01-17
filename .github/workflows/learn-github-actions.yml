@@ -52,7 +52,13 @@ jobs:
         workspace: [default]
         environment: [staging, production]
     steps:
-      - run: echo ${{ matrix.entry }}     
+      - name: Test env vs matrix    
+        env:
+          WORKSPACE: ${{ matrix.workspace }}
+          ENVIRONMENT: ${{ matrix.environment }}
+        run: echo ${{ env.workspace }} ${{ env.environment }}
+      
+      - run: echo ${{ env.workspace }} ${{ env.environment }}
       - name: Dump GitHub context
         if: ${{ matrix.ENVIRONMENT == 'staging' }}
         env:

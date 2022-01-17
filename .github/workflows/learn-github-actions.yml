@@ -47,11 +47,14 @@ jobs:
   test-matrix:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        entry: [ test ]
+        workspace: [default]
+        environment: [staging, production]
     steps:
       - run: echo ${{ matrix.entry }}     
       - name: Dump GitHub context
+        if: ${{ matrix.ENVIRONMENT == 'staging' }}
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |

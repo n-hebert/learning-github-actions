@@ -56,9 +56,9 @@ jobs:
         env:
           WORKSPACE: ${{ matrix.workspace }}
           ENVIRONMENT: ${{ matrix.environment }}
-        run: echo ${{ env.workspace }} ${{ env.environment }}
+        run: echo ${{ env.WORKSPACE }} ${{ env.ENVIRONMENT }}
       
-      - run: echo ${{ env.workspace }} ${{ env.environment }}
+      - run: echo ${{ matrix.workspace }} ${{ matrix.environment }}
       - name: Dump GitHub context
         if: ${{ matrix.ENVIRONMENT == 'staging' }}
         env:

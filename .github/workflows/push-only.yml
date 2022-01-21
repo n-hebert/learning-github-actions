@@ -4,19 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: "Your name"
+        description: Your name
         required: false
-        default: "world"
+        default: world
 
 jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
       - name: Say hello
-        run: echo Hello, ${{ github.events.inputs.name }}!
+        run: echo "Hello, ${{ github.event.inputs.name }}!"
 
       - name: Print workflow_run payload
-        run: echo ${{ github.events.workflow_run }}
+        run: echo "${{ github.event.workflow_run }}"
 
   farewell:
     runs-on: ubuntu-latest

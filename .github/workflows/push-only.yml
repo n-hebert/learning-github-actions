@@ -15,6 +15,9 @@ jobs:
       - name: Say hello
         run: echo "Hello, ${{ github.events.inputs.name }}!"
 
+      - name: Print workflow_run payload
+        run: echo "${{ github.events.workflow_run }}"
+
   farewell:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push' # Only run on pushes to main - this will never run.

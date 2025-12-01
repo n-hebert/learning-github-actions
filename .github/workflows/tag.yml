@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Tag branch
         run: git tag ${{ github.event.inputs.tag }} ${{ github.event.inputs.branch }}
       - name: Share tag
